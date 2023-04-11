@@ -2,7 +2,7 @@ package main
 
 func main() {
 	for {
-		exit := menu()
+		exit := game()
 		if exit {
 			break
 		}
