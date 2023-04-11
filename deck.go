@@ -7,6 +7,7 @@ import (
 
 type Deck []Card
 
+
 // NewDeck creates a new deck of cards
 func NewDeck() Deck {
 	var deck Deck
@@ -26,4 +27,10 @@ func (d *Deck) Shuffle() {
 		j := rand.Intn(i + 1)
 		(*d)[i], (*d)[j] = (*d)[j], (*d)[i]
 	}
+}
+
+
+// PutCard puts a card on the deck
+func (d *Deck) PutCard(card Card) {
+	*d = append(*d, card)
 }

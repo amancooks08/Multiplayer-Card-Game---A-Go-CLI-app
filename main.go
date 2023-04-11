@@ -37,7 +37,16 @@ func main() {
 	}
 
 	//DiscardPile are the cards that have been played already.
-	discardPile := []Card{deck.DrawCard()}
+	firstCard := deck.DrawCard()
+
+	// If the first card is a Queen(Q) or a Jack(J), put the card back in the deck, reshuffle
+	// it and draw another card.
+	if firstCard.Rank == "Q" || firstCard.Rank == "J" {
+		deck.PutCard(firstCard)
+		deck.Shuffle()
+		firstCard = deck.DrawCard()
+	}
+	discardPile := []Card{firstCard}
 
 	for {
 		for i := range players {
