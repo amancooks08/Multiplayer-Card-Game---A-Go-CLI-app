@@ -12,8 +12,8 @@ type Deck []Card
 func NewDeck() Deck {
 	var deck Deck
 	for _, rank := range ranks {
-		for _, suit := range suits {
-			card := Card{Rank: rank, Suit: suit}
+		for _, suite := range suites {
+			card := Card{Rank: rank, Suite: suite}
 			deck = append(deck, card)
 		}
 	}

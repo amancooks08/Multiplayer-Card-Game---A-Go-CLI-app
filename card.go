@@ -5,7 +5,7 @@ import "fmt"
 
 type Card struct {
 	Rank string
-	Suit string
+	Suite string
 }
 
 
@@ -24,7 +24,7 @@ func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players 
 
 	card := p.Hand[cardIdx]
 	topCard := (*discardPile)[len(*discardPile)-1]
-	if card.Rank != topCard.Rank && card.Suit != topCard.Suit {
+	if card.Rank != topCard.Rank && card.Suite != topCard.Suite {
 		return fmt.Errorf("cannot play this card")
 	}
 
@@ -51,10 +51,13 @@ func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players 
 			for i := 0; i < 4; i++ {
 				nextPlayer.Hand = append(nextPlayer.Hand, deck.DrawCard())
 			}
-		}
+	}
 	*discardPile = append(*discardPile, card)
-	p.Hand = append(p.Hand[:cardIdx], p.Hand[cardIdx+1:]...)
-
+	if cardIdx == 0{
+		p.Hand = p.Hand[1:]
+	} else {
+		p.Hand = append(p.Hand[:cardIdx], p.Hand[cardIdx+1:]...)
+	}
 	
 	return nil
 }

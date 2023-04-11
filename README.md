@@ -5,7 +5,7 @@ This is a multiplayer card game implemented in Golang that supports up to 4 play
 1. Each player starts with a hand of 5 cards drawn from a standard deck of 52 cards.
 2. The game starts with a discard pile, which initially contains one card drawn from the deck.
 3. Players take turns playing cards from their hand, following the following rules:
-    i) A player can only play a card if it matches either the suit or the rank of the top card on the discard pile.
+    i) A player can only play a card if it matches either the suite or the rank of the top card on the discard pile.
    ii) If a player has an action card (Ace, King, Queen, or Jack), they can play it to trigger a special action (see below).
 4. If a player cannot play a card, they must draw a card from the draw pile. If the draw pile is empty, the game ends in a draw and no player is declared a winner.
 5. The game ends when one player runs out of cards, and that player is declared the winner.

@@ -9,7 +9,7 @@ const (
 
 var (
 	ranks = []string{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"}
-	suits = []string{"Hearts", "Diamonds", "Clubs", "Spades"}
+	suites = []string{"Hearts", "Diamonds", "Clubs", "Spades"}
 )
 
 
