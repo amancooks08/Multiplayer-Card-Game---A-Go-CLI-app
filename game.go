@@ -25,6 +25,10 @@ func game() {
 		var name string
 		fmt.Printf("Enter name for player %d: ", i+1)
 		fmt.Scanln(&name)
+		if name == "" || name == " "{
+			fmt.Println("Invalid name")
+			return
+		}
 		players = append(players, NewPlayer(name))
 	}
 
@@ -37,11 +41,12 @@ func game() {
 
 	// If the first card is a Queen(Q) or a Jack(J), put the card back in the deck, reshuffle
 	// it and draw another card.
-	if firstCard.Rank == "Q" || firstCard.Rank == "J" {
+	if firstCard.Rank == "Q" || firstCard.Rank == "J" || firstCard.Rank == "K" || firstCard.Rank == "A"{
 		deck.PutCard(firstCard)
 		deck.Shuffle()
 		firstCard = deck.DrawCard()
 	}
+	//DiscardPile are the cards that have been played already.
 	discardPile := []Card{firstCard}
 
 	for {
@@ -66,6 +71,12 @@ func game() {
 					fmt.Println("Error:", err)
 				}
 			}
+		}
+
+		// Check if the deck is empty, then declare that no one wins
+		if len(deck) == 0 {
+			fmt.Println("No one wins! :P")
+			return
 		}
 
 		// Check if any player has an empty hand
