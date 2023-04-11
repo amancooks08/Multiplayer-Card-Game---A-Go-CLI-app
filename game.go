@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func game() {
+func game() (exit bool){
 	//Initialize the deck
 	deck := NewDeck()
 
@@ -27,7 +27,7 @@ func game() {
 		fmt.Scanln(&name)
 		if name == "" || name == " "{
 			fmt.Println("Invalid name")
-			return
+			return false
 		}
 		players = append(players, NewPlayer(name))
 	}
@@ -66,6 +66,10 @@ func game() {
 
 				err := players[i].PlayCard(cardIdx, &discardPile, &deck, players)
 				if err == nil {
+					if len(players[i].Hand) == 0 {
+						fmt.Printf("%s wins!\n", players[i].Name)
+						return true
+					}
 					break
 				} else {
 					fmt.Println("Error:", err)
@@ -76,15 +80,7 @@ func game() {
 		// Check if the deck is empty, then declare that no one wins
 		if len(deck) == 0 {
 			fmt.Println("No one wins! :P")
-			return
-		}
-
-		// Check if any player has an empty hand
-		for i := range players {
-			if len(players[i].Hand) == 0 {
-				fmt.Printf("%s wins!\n", players[i].Name)
-				return
-			}
+			return true
 		}
 	}
 }
