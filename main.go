@@ -23,6 +23,11 @@ func main() {
 	fmt.Print("Enter number of players: ")
 	fmt.Scanln(&numPlayers)
 
+	// Check if the number of players is between 2 and 4
+	if numPlayers > 4 || numPlayers < 2 {
+		fmt.Println("Invalid number of players")
+		return
+	}
 	// Ask for their names and add them to the players slice
 	players := []Player{}
 	for i := 0; i < numPlayers; i++ {
