@@ -5,6 +5,14 @@ type Player struct {
 	Hand  []Card
 }
 
+// Creates a new player with an empty hand
+func NewPlayer(name string) Player {
+	return Player{
+		Name: name,
+		Hand: []Card{},
+	}
+}
+
 // getNextPlayer returns the next player in the turn sequence
 func getNextPlayer(players []Player, currentPlayer *Player) *Player {
 	currentPlayerIdx := -1
