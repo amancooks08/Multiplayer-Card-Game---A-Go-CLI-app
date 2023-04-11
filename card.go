@@ -11,6 +11,11 @@ type Card struct {
 
 // DrawCard draws a card from the deck
 func (d *Deck) DrawCard() Card {
+	// Check if the deck is empty
+	if len(*d) == 0 {
+		return Card{}
+	}
+	
 	card := (*d)[0]
 	*d = (*d)[1:]
 	return card
