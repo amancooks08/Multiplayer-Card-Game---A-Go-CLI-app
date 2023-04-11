@@ -17,7 +17,7 @@ func (d *Deck) DrawCard() Card {
 }
 
 // PlayCard plays a card from the player's hand
-func (p *Player) PlayCard(cardIdx int, discardPile *[]Card) error {
+func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players []Player) error {
 	if cardIdx < 0 || cardIdx >= len(p.Hand) {
 		return fmt.Errorf("invalid card index")
 	}
@@ -28,9 +28,34 @@ func (p *Player) PlayCard(cardIdx int, discardPile *[]Card) error {
 		return fmt.Errorf("cannot play this card")
 	}
 
+	// Check for special action cards
+	switch card.Rank {
+		case "A": // Ace - Skip the next player in turn
+			fmt.Printf("%s played Ace - Skipping the next player's turn\n", p.Name)
+
+		case "K": // King - Reverse the sequence of who plays next
+			fmt.Printf("%s played King - Reversing the turn sequence\n", p.Name)
+			// Reverse the player order
+			reversePlayerOrder(players)
+
+		case "Q": // Queen - +2
+			fmt.Printf("%s played Queen - Drawing 2 cards for the next player\n", p.Name)
+			nextPlayer := getNextPlayer(players, p)
+			for i := 0; i < 2; i++ {
+				nextPlayer.Hand = append(nextPlayer.Hand, deck.DrawCard())
+			}
+
+		case "J": // Jack - +4
+			fmt.Printf("%s played Jack - Drawing 4 cards for the next player\n", p.Name)
+			nextPlayer := getNextPlayer(players, p)
+			for i := 0; i < 4; i++ {
+				nextPlayer.Hand = append(nextPlayer.Hand, deck.DrawCard())
+			}
+		}
 	*discardPile = append(*discardPile, card)
 	p.Hand = append(p.Hand[:cardIdx], p.Hand[cardIdx+1:]...)
 
+	
 	return nil
 }
 
