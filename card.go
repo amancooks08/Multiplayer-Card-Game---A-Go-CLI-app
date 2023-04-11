@@ -15,7 +15,8 @@ func (d *Deck) DrawCard() Card {
 	if len(*d) == 0 {
 		return Card{}
 	}
-	
+
+	// Draw the top card
 	card := (*d)[0]
 	*d = (*d)[1:]
 	return card
@@ -23,10 +24,13 @@ func (d *Deck) DrawCard() Card {
 
 // PlayCard plays a card from the player's hand
 func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players []Player) error {
+
+	// Check if the card index is valid
 	if cardIdx < 0 || cardIdx >= len(p.Hand) {
 		return fmt.Errorf("invalid card index")
 	}
 
+	// Check if the card can be played
 	card := p.Hand[cardIdx]
 	topCard := (*discardPile)[len(*discardPile)-1]
 	if card.Rank != topCard.Rank && card.Suite != topCard.Suite {
@@ -57,7 +61,10 @@ func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players 
 				nextPlayer.Hand = append(nextPlayer.Hand, deck.DrawCard())
 			}
 	}
+	// Add the card to the discard pile
 	*discardPile = append(*discardPile, card)
+
+	// Remove the card from the player's hand
 	if cardIdx == 0{
 		p.Hand = p.Hand[1:]
 	} else {
@@ -69,6 +76,13 @@ func (p *Player) PlayCard(cardIdx int, discardPile *[]Card, deck *Deck, players 
 
 // DrawHand draws a hand of cards from the deck
 func (p *Player) DrawHand(deck *Deck) {
+
+	// Check if the deck has enough cards
+	if len(*deck) < handSize {
+		return
+	}
+
+	// Draw cards from the deck
 	for i := 0; i < handSize; i++ {
 		card := deck.DrawCard()
 		p.Hand = append(p.Hand, card)
