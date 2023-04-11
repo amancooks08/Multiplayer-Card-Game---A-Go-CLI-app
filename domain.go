@@ -1,6 +1,6 @@
 package main
 
-//This file contains all the required constants and structs used to run the game
+//This file contains all the required constants used to run the game
 
 const (
 	deckSize = 52
@@ -8,12 +8,8 @@ const (
 )
 
 var (
-	ranks = []string{"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"}
+	ranks = []string{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"}
 	suits = []string{"Hearts", "Diamonds", "Clubs", "Spades"}
 )
 
-type Player struct {
-	Name  string
-	Hand  []Card
-	Score int
-}
+

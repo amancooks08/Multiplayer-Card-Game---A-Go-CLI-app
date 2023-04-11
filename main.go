@@ -36,6 +36,7 @@ func main() {
 		players[i].DrawHand(&deck)
 	}
 
+	//DiscardPile are the cards that have been played already.
 	discardPile := []Card{deck.DrawCard()}
 
 	for {
@@ -53,7 +54,7 @@ func main() {
 					break
 				}
 
-				err := players[i].PlayCard(cardIdx, &discardPile)
+				err := players[i].PlayCard(cardIdx, &discardPile, &deck, players)
 				if err == nil {
 					break
 				} else {
