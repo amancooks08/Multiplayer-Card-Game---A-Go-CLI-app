@@ -17,6 +17,7 @@ Ace (A): Skip the next player in turn.
 King (K): Reverse the sequence of players who play next.
 Queen (Q): Add 2 cards to the draw pile. The next player must draw these cards and cannot play a Queen from their hand on that turn, even if available.
 Jack (J): Add 4 cards to the draw pile. The next player must draw these cards and cannot play a Jack from their hand on that turn, even if available.
+
 Note that action cards are not stackable, i.e., if a Queen or Jack is played, the next player must draw the specified number of cards and cannot play another Queen or Jack from their hand on that turn, even if available.
 
 # How to Run
