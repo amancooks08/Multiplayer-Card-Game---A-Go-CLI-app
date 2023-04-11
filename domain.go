@@ -12,13 +12,6 @@ var (
 	suits = []string{"Hearts", "Diamonds", "Clubs", "Spades"}
 )
 
-type Card struct {
-	Rank string
-	Suit string
-}
-
-type Deck []Card
-
 type Player struct {
 	Name  string
 	Hand  []Card

@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+type Deck []Card
+
 // NewDeck creates a new deck of cards
 func NewDeck() Deck {
 	var deck Deck
